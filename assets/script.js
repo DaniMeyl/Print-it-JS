@@ -21,18 +21,18 @@ const slides = [
 const arrowLeft = document.querySelector(".arrow_left");
 const arrowRight = document.querySelector(".arrow_right");
 
-arrowLeft.addEventListener("mouseup", (event) => {
+arrowLeft.addEventListener("click", (event) => {
 	if (event.button === 0) {
 		console.log("Clic gauche sur arrowLeft !");}       
-	else if (event.button === 2) {
-		console.log("Clic droit sur arrowLeft !");}
+	else if (event.button === 1) {
+		console.log("Clic milieu sur arrowLeft !");}
 });
 
-arrowRight.addEventListener("mouseup", (event) => {
+arrowRight.addEventListener("click", (event) => {
 	if (event.button === 0) {
 		console.log("Clic gauche sur arrowRight!");} 
-	else if (event.button === 2) {
-		console.log("Clic droit sur arrowRight !");}
+	else if (event.button === 1) {
+		console.log("Clic milieu sur arrowRight !");}
 });
 
 
@@ -75,11 +75,15 @@ function selectSlide ( newSlideIndex, oldSlideIndex) {
 
 //--------- evenement ------------//
 arrowRight.addEventListener("click", (event) =>{ 
+	if (event.button === 0) {
 	currentSlideIndex = selectSlide ( currentSlideIndex + 1 , currentSlideIndex);	
+}
 });
 
 arrowLeft.addEventListener("click", (event) =>{ 
+	if (event.button === 0) {
 	currentSlideIndex = selectSlide ( currentSlideIndex -1 , currentSlideIndex );	
+}
 });
 
 
