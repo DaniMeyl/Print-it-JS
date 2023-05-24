@@ -21,14 +21,14 @@ const slides = [
 const arrowLeft = document.querySelector(".arrow_left");
 const arrowRight = document.querySelector(".arrow_right");
 
-arrowLeft.addEventListener("click", (event) => {
+arrowLeft.addEventListener("mouseup", function (event){ 
 	if (event.button === 0) {
-		console.log("Clic gauche sur arrowLeft !");}       
-	else if (event.button === 1) {
-		console.log("Clic milieu sur arrowLeft !");}
+	console.log("Clic gauche sur arrowLeft !");}       
+else if (event.button === 1) {
+	console.log("Clic milieu sur arrowLeft !");}
 });
 
-arrowRight.addEventListener("click", (event) => {
+arrowRight.addEventListener("mouseup", (event) => {
 	if (event.button === 0) {
 		console.log("Clic gauche sur arrowRight!");} 
 	else if (event.button === 1) {
@@ -39,8 +39,8 @@ arrowRight.addEventListener("click", (event) => {
 //---------creation dot------------//
 
 const dotContainer = document.querySelector('.dots');
-let currentSlideIndex = 0;
-let dots =[];
+
+let dots =[]; 
 
 for (let i = 0; i < slides.length; i++) {
 	
@@ -52,11 +52,11 @@ for (let i = 0; i < slides.length; i++) {
 
 //--------Fonction changement de slide -------//
 
-const imageBanner = document.querySelector ( '.banner-img') ;
-const tagLineBanner = document.querySelector ( '.tagline');
+const imageBanner = document.querySelector('.banner-img');
+const tagLineBanner = document.querySelector('.tagline');
 
-currentSlideIndex = selectSlide ( 0, 0);
-
+//let currentSlideIndex = 0;
+let currentSlideIndex = selectSlide ( 0, 0);
 
 function selectSlide ( newSlideIndex, oldSlideIndex) {
 
@@ -69,11 +69,11 @@ function selectSlide ( newSlideIndex, oldSlideIndex) {
 	dots[oldSlideIndex].classList.remove('dot_selected'); 
 	dots[newSlideIndex].classList.add('dot_selected');	
 	
-	return newSlideIndex; //on retourne l'index actualisé //
+	return newSlideIndex; //on retourne l'index actualisé 
        	
 }
 
-//--------- evenement ------------//
+//--------- evenement sur le click ------------//
 arrowRight.addEventListener("click", (event) =>{ 
 	if (event.button === 0) {
 	currentSlideIndex = selectSlide ( currentSlideIndex + 1 , currentSlideIndex);	
