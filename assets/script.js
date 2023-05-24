@@ -57,7 +57,7 @@ arrowRight.addEventListener("click", ()=> {
 
 	dots[counter].classList.remove("dot_selected")
 	
-	if ( counter == slides.length -1) {
+	if ( counter === slides.length -1) {
 		imageSlide.src = "./assets/images/slideshow/" + slides[0].image;
 		txtSlide.innerHTML = slides[0].tagLine;
 		dots[0].classList.add("dot_selected");
@@ -66,7 +66,7 @@ arrowRight.addEventListener("click", ()=> {
 	
 	else { 	
 		imageSlide.src= "./assets/images/slideshow/" + slides[counter+1].image; 
-		txtSlide.innerHTML = slides [counter + 1 ].tagLine;
+		txtSlide.innerHTML = slides[counter + 1 ].tagLine;
 		dots[counter + 1].classList.add("dot_selected")
 		counter = counter + 1;
 	}
