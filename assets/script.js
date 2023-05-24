@@ -16,86 +16,58 @@ const slides = [
 		"tagLine":"Autocollants <span>avec découpe laser sur mesure</span>"
 	}
 ]
-//---------ecoute du clic------------//
 
 const arrowLeft = document.querySelector(".arrow_left");
 const arrowRight = document.querySelector(".arrow_right");
+const dotsContainer = document.querySelector(".dots");
+const imageSlide = document.querySelector(".banner-img");
+const txtSlide = document.querySelector(".slider-text")
+let counter = 0;
+let dots = [];
 
-arrowLeft.addEventListener("mouseup", function (event){ 
-	if (event.button === 0) {
-	console.log("Clic gauche sur arrowLeft !");}       
-else if (event.button === 1) {
-	console.log("Clic milieu sur arrowLeft !");}
-});
-
-arrowRight.addEventListener("mouseup", (event) => {
-	if (event.button === 0) {
-		console.log("Clic gauche sur arrowRight!");} 
-	else if (event.button === 1) {
-		console.log("Clic milieu sur arrowRight !");}
-});
-
-
-//---------creation dot------------//
-
-const dotContainer = document.querySelector('.dots');
-
-let dots =[]; 
-
-for (let i = 0; i < slides.length; i++) {
-	
-	let dot = document.createElement("p")
-	dotContainer.appendChild(dot);
-	dot.classList.add('dot'); 
+for ( let i=0 ; i < slides.length; i ++ ){
+	let dot = document.createElement("p");
+	dotsContainer.appendChild(dot);
+	dot.classList.add('dot');
 	dots.push(dot);
 }
 
-//--------Fonction changement de slide -------//
+dots[0].classList.add ('dot_selected');
 
-const imageBanner = document.querySelector('.banner-img');
-const tagLineBanner = document.querySelector('.tagline');
+arrowLeft.addEventListener("click", ()=> {
 
-//let currentSlideIndex = 0;
-let currentSlideIndex = selectSlide ( 0, 0);
-
-function selectSlide ( newSlideIndex, oldSlideIndex) {
-
-	if ( newSlideIndex < 0 ) {newSlideIndex = dots.length -1;}
-	if ( newSlideIndex > dots.length -1) {newSlideIndex = 0 ;}
-
-	tagLineBanner.innerHTML = slides[newSlideIndex].tagLine;
-	imageBanner.src = `./assets/images/slideshow/${slides[newSlideIndex].image}`;
-
-	dots[oldSlideIndex].classList.remove('dot_selected'); 
-	dots[newSlideIndex].classList.add('dot_selected');	
+	dots[counter].classList.remove("dot_selected")
 	
-	return newSlideIndex; //on retourne l'index actualisé 
-       	
-}
+	if ( counter === 0) {
+		imageSlide.src = "./assets/images/slideshow/" + slides[slides.length - 1].image;
+		txtSlide.innerHTML = slides[slides.length - 1].tagLine;
+		dots[dots.length - 1].classList.add("dot_selected");
+		counter = slides.length - 1 		
+	}
 
-//--------- evenement sur le click ------------//
-arrowRight.addEventListener("click", (event) =>{ 
-	if (event.button === 0) {
-	currentSlideIndex = selectSlide ( currentSlideIndex + 1 , currentSlideIndex);	
-}
-});
+	else { 
+		imageSlide.src= "./assets/images/slideshow/" + slides[ counter - 1].image; 
+		txtSlide.innerHTML = slides [counter -1 ].tagLine;
+		dots[counter -1].classList.add("dot_selected")
+		counter = counter -1;
+	}
+})
 
-arrowLeft.addEventListener("click", (event) =>{ 
-	if (event.button === 0) {
-	currentSlideIndex = selectSlide ( currentSlideIndex -1 , currentSlideIndex );	
-}
-});
+arrowRight.addEventListener("click", ()=> {
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+	dots[counter].classList.remove("dot_selected")
+	
+	if ( counter == slides.length -1) {
+		imageSlide.src = "./assets/images/slideshow/" + slides[0].image;
+		txtSlide.innerHTML = slides[0].tagLine;
+		dots[0].classList.add("dot_selected");
+		counter = 0 ;	
+	}
+	
+	else { 	
+		imageSlide.src= "./assets/images/slideshow/" + slides[counter+1].image; 
+		txtSlide.innerHTML = slides [counter + 1 ].tagLine;
+		dots[counter + 1].classList.add("dot_selected")
+		counter = counter + 1;
+	}
+})
